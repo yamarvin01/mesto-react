@@ -1,30 +1,50 @@
 // // Функциональный компонент Main
 // function Main() {
-//     return (
-//       <main class="content">
-//         <section class="profile">
-//           <div class="profile__avatar-section">
-//             <img class="profile__avatar" alt="Аватарка" />
-//             <button class="profile__avatar-button"></button>
-//           </div>
-//           <div class="profile__edit">
-//             <h1 class="profile__title"></h1>
-//             <button
-//               class="profile__button-edit"
-//               type="button"
-//               aria-label="Кнопка редактирования контента"
-//             ></button>
-//           </div>
-//           <p class="profile__subtitle"></p>
+
+//   const handleEditAvatarClick = () => {
+//     document.querySelector('.popup_type_edit-avatar').classList.add('popup_opened');
+//   }
+
+//   const handleEditProfileClick = () => {
+//     document.querySelector('.popup_type_edit-profile').classList.add('popup_opened');
+//   }
+
+//   const handleAddPlaceClick = () => {
+//     document.querySelector('.popup_type_add-card').classList.add('popup_opened');
+//   }
+
+//   return (
+//     <main className="content">
+//       <section className="profile">
+//         <div className="profile__avatar-section">
+//           <img className="profile__avatar" alt="Аватарка" />
 //           <button
-//             class="profile__button-add"
+//             onClick={handleEditAvatarClick}
+//             className="profile__avatar-button"
 //             type="button"
-//             aria-label="Кнопка добавления контента"
+//             aria-label="Кнопка редактирования контента"
 //           ></button>
-//         </section>
-//         <section class="cards"></section>
-//       </main>
-//     );
+//         </div>
+//         <div className="profile__edit">
+//           <h1 className="profile__title"></h1>{" "}
+//           <button
+//             onClick={handleEditProfileClick}
+//             className="profile__button-edit"
+//             type="button"
+//             aria-label="Кнопка редактирования контента"
+//           ></button>
+//         </div>
+//         <p className="profile__subtitle"></p>
+//         <button
+//           onClick={handleAddPlaceClick}
+//           className="profile__button-add"
+//           type="button"
+//           aria-label="Кнопка добавления контента"
+//         ></button>
+//       </section>
+//       <section className="cards"></section>
+//     </main>
+//   );
 // }
 
 // export default Main;
@@ -32,54 +52,52 @@
 // Классовый компонент Main
 import React from "react";
 
-class Main extends React.Component {
+export default class Main extends React.Component {
 
   handleEditAvatarClick = () => {
-    console.log(1);
+    document.querySelector('.popup_type_edit-avatar').classList.add('popup_opened');
   }
 
   handleEditProfileClick = () => {
-    console.log(2);
+    document.querySelector('.popup_type_edit-profile').classList.add('popup_opened');
   }
 
   handleAddPlaceClick = () => {
-    console.log(3);
+    document.querySelector('.popup_type_add-card').classList.add('popup_opened');
   }
 
   render() {
     return (
-      <main class="content">
-        <section class="profile">
-          <div class="profile__avatar-section">
-            <img class="profile__avatar" alt="Аватарка" />
+      <main className="content">
+        <section className="profile">
+          <div className="profile__avatar-section">
+            <img className="profile__avatar" alt="Аватарка" />
             <button
               onClick={this.handleEditAvatarClick}
-              class="profile__avatar-button"
+              className="profile__avatar-button"
               type="button"
               aria-label="Кнопка редактирования контента"
             ></button>
           </div>
-          <div class="profile__edit">
-            <h1 class="profile__title"></h1>
+          <div className="profile__edit">
+            <h1 className="profile__title"></h1>
             <button
               onClick={this.handleEditProfileClick}
-              class="profile__button-edit"
+              className="profile__button-edit"
               type="button"
               aria-label="Кнопка редактирования контента"
             ></button>
           </div>
-          <p class="profile__subtitle"></p>
+          <p className="profile__subtitle"></p>
           <button
             onClick={this.handleAddPlaceClick}
-            class="profile__button-add"
+            className="profile__button-add"
             type="button"
             aria-label="Кнопка добавления контента"
           ></button>
         </section>
-        <section class="cards"></section>
+        <section className="cards"></section>
       </main>
     );
   }
 }
-
-export default Main;

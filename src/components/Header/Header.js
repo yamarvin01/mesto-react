@@ -3,9 +3,9 @@
 
 // function Header() {
 //   return (
-//     <header class="header">
-//       <a class="header__link" href="#" target="_blank" rel="noopener">
-//         <img class="header__logo" src={logo} alt="Логотип Mesto Russia" />
+//     <header className="header">
+//       <a className="header__link" href="#" target="_blank" rel="noopener">
+//         <img className="header__logo" src={logo} alt="Логотип Mesto Russia" />
 //       </a>
 //     </header>
 //   );
@@ -22,9 +22,9 @@ import logo from "../../styles/images/logo-mesto.svg";
 class Header extends React.Component {
   render() {
     return (
-      <header class="header">
-        <a class="header__link" href="#" target="_blank" rel="noopener">
-          <img class="header__logo" src={logo} alt="Логотип Mesto Russia" />
+      <header className="header">
+        <a className="header__link" href="#" target="_blank" rel="noopener">
+          <img className="header__logo" src={logo} alt="Логотип Mesto Russia" />
         </a>
       </header>
     );
