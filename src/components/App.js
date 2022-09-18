@@ -19,7 +19,7 @@ function App() {
           <form
             class="popup__form popup__form_type_editAvatar"
             name="editAvatar"
-            novalidate
+            noValidate
           >
             <label class="popup__field" for="avatar-input">
               <input
@@ -52,7 +52,7 @@ function App() {
           <form
             class="popup__form popup__form_type_edit-profile"
             name="editProfile"
-            novalidate
+            noValidate
           >
             <label class="popup__field" for="name-input">
               <input
@@ -61,8 +61,8 @@ function App() {
                 type="text"
                 name="name"
                 placeholder="Имя"
-                minlength="2"
-                maxlength="40"
+                minLength="2"
+                maxLength="40"
                 required
               />
               <span class="name-input-error popup__error"></span>
@@ -74,8 +74,8 @@ function App() {
                 type="text"
                 name="about"
                 placeholder="О себе"
-                minlength="2"
-                maxlength="200"
+                minLength="2"
+                maxLength="200"
                 required
               />
               <span class="about-input-error popup__error"></span>
@@ -100,7 +100,7 @@ function App() {
           <form
             class="popup__form popup__form_type_add-card"
             name="newCard"
-            novalidate
+            noValidate
           >
             <label class="popup__field" for="place-input">
               <input
@@ -109,8 +109,8 @@ function App() {
                 type="text"
                 name="place"
                 placeholder="Название"
-                minlength="2"
-                maxlength="30"
+                minLength="2"
+                maxLength="30"
                 required
               />
               <span class="place-input-error popup__error"></span>
