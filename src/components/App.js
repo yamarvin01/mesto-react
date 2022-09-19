@@ -10,12 +10,13 @@ export default class App extends React.Component {
   constructor() {
     super();
     this.state = {
+      userName: '',
+      userAvatar: '',
+      userDescription: '',
+      cards: [],
       isEditAvatarPopupOpen: false,
       isEditProfilePopupOpen: false,
       isAddPlacePopupOpen: false,
-      userName: '',
-      userDescription: '',
-      userAvatar: ''
     }
   }
 
@@ -28,7 +29,19 @@ export default class App extends React.Component {
           userDescription: userData.about,
           userAvatar: userData.avatar
         });
+      })
+      .catch((err) => {
+        console.log(err);
       });
+
+    api.getInitialCards()
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+      
   }
 
   handleEditAvatarClick = () => {
