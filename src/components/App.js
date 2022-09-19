@@ -1,4 +1,5 @@
-import React, { createElement } from "react";
+import React from "react";
+import ReactDOM from "react";
 import Header from "./Header/Header.js";
 import Main from "./Main/Main.js";
 import Footer from "./Footer/Footer.js";
@@ -37,11 +38,39 @@ export default class App extends React.Component {
     api.getInitialCards()
       .then((result) => {
         console.log(result);
+        this.setState({cards: result});
+
+        ReactDOM.render((
+        <>
+        { this.state.cards.map((card) => (
+          <article className="card" key={card._id}>
+            <img className="card__image" alt="Изображение" src={card.link} />
+            <div className="card__info">
+              <h2 className="card__title">{card.name}</h2>
+              <div className="card__like">
+                <button
+                  className="card__button card__button_type_like"
+                  type="button"
+                  aria-label="Кнопка лайк"
+                ></button>
+                <p className="card__like-text">{card.likes.length}</p>
+              </div>
+            </div>
+            <button
+              className="card__button card__button_type_delete"
+              type="button"
+              aria-label="Кнопка удаления"
+            ></button>
+          </article>))}
+        </>
+        ), document.querySelector('.cards'));
+
+
       })
       .catch((err) => {
         console.log(err);
       });
-      
+
   }
 
   handleEditAvatarClick = () => {
