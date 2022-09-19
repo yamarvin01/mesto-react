@@ -3,6 +3,7 @@ import Header from './Header/Header.js';
 import Main from './Main/Main.js';
 import Footer from './Footer/Footer.js';
 import PopupWithForm from './PopupWithForm/PopupWithForm.js';
+import ImagePopup from './ImagePopup/ImagePopup.js';
 
 const input = document.createElement('input');
 
@@ -14,6 +15,7 @@ export default class App extends React.Component {
         <Main />
         <Footer />
         <PopupWithForm name='editAvatar' title='БлаБлаБла' btnText='блаблабла' />
+        <ImagePopup />
 
         <div className="popup popup_type_edit-avatar">
           <div className="popup__container popup__container_type_editAvatar">
