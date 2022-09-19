@@ -4,6 +4,7 @@ import Main from "./Main/Main.js";
 import Footer from "./Footer/Footer.js";
 import PopupWithForm from "./PopupWithForm/PopupWithForm.js";
 import ImagePopup from "./ImagePopup/ImagePopup.js";
+import { api } from "../utils/api.js";
 
 export default class App extends React.Component {
   constructor() {
@@ -11,8 +12,23 @@ export default class App extends React.Component {
     this.state = {
       isEditAvatarPopupOpen: false,
       isEditProfilePopupOpen: false,
-      isAddPlacePopupOpen: false
+      isAddPlacePopupOpen: false,
+      userName: '',
+      userDescription: '',
+      userAvatar: ''
     }
+  }
+
+  componentDidMount() {
+    api.getUserInfo()
+      .then((userData) => {
+        console.log('ghdhgdhdg', userData);
+        this.setState({
+          userName: userData.name,
+          userDescription: userData.about,
+          userAvatar: userData.avatar
+        });
+      });
   }
 
   handleEditAvatarClick = () => {
@@ -40,6 +56,9 @@ export default class App extends React.Component {
       <div className="page" name="page">
         <Header />
         <Main
+          userName={this.state.userName}
+          userDescription={this.state.userDescription}
+          userAvatar={this.state.userAvatar}
           onEditAvatar={this.handleEditAvatarClick}
           onEditProfile={this.handleEditProfileClick}
           onAddPlace={this.handleAddPlaceClick}

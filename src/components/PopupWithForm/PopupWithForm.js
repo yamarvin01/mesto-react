@@ -21,6 +21,7 @@ export default class PopupWithForm extends React.Component {
             name={this.props.name}
             noValidate
           >
+            
             {/* Здесь должны быть поля формы */}
 
             <button
