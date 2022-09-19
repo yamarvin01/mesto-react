@@ -1,41 +1,34 @@
 import React from "react";
 
 export default class PopupWithForm extends React.Component {
-
   constructor(props) {
     super(props);
   }
 
   render() {
     return (
-      <div className="popup popup_type_edit-avatar popup_opened">
-        <div className="popup__container popup__container_type_editAvatar">
+      <div className={`popup popup_type_${this.props.name} popup_opened`}>
+        <div
+          className={`popup__container popup__container_type_${this.props.name}`}
+        >
           <h2 className="popup__title">{this.props.title}</h2>
           <button
             className="popup__button popup__button_type_close"
             type="button"
           ></button>
           <form
-            className="popup__form popup__form_type_editAvatar"
-            name="editAvatar"
+            className={`popup__form popup__form_type_${this.props.name}`}
+            name={this.props.name}
             noValidate
           >
-            <label className="popup__field" htmlFor="avatar-input">
-              <input
-                id="avatar-input"
-                className="popup__input popup__input_type_avatar"
-                type="url"
-                name="avatar"
-                placeholder="Ссылка на аватар"
-                required
-              />
-              <span className="avatar-input-error popup__error"></span>
-            </label>
+            {/* Здесь что-то будет */}
+
             <button
               className="popup__button popup__button_type_submit"
               type="submit"
+              aria-label="Кнопка сабмита формы"
             >
-              Сохранить
+              {this.props.btnText}
             </button>
           </form>
         </div>
@@ -45,6 +38,6 @@ export default class PopupWithForm extends React.Component {
 }
 
 // popup_type_edit-avatar
-// edit-avatar
+// edit-avatar заменен на editAvatar
 // Обновить аватар
 // Сохранить
