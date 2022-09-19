@@ -2,6 +2,7 @@ import React from 'react';
 import Header from './Header/Header.js';
 import Main from './Main/Main.js';
 import Footer from './Footer/Footer.js';
+import PopupWithForm from './PopupWithForm/PopupWithForm.js';
 
 // function App() {
 //   return (
@@ -173,6 +174,7 @@ export default class App extends React.Component {
         <Header />
         <Main />
         <Footer />
+        <PopupWithForm />
 
         <div className="popup popup_type_edit-avatar">
           <div className="popup__container popup__container_type_editAvatar">
