@@ -7,10 +7,11 @@ export default class PopupWithForm extends React.Component {
 
   render() {
     return (
-      <div className={`popup popup_type_${this.props.name}`}>
+      <div className={`popup popup_type_${this.props.name} ${this.props.isOpen}`}>
         <div className={`popup__container popup__container_type_${this.props.name}`}>
           <h2 className="popup__title">{this.props.title}</h2>
           <button
+            onClick={this.props.onClose}
             className="popup__button popup__button_type_close"
             type="button"
             aria-label="Закрыть"
@@ -20,7 +21,7 @@ export default class PopupWithForm extends React.Component {
             name={this.props.name}
             noValidate
           >
-            {/* Здесь что-то будет */}
+            {/* Здесь должны быть поля формы */}
 
             <button
               className="popup__button popup__button_type_submit"
@@ -35,8 +36,3 @@ export default class PopupWithForm extends React.Component {
     );
   }
 }
-
-// popup_type_edit-avatar
-// edit-avatar заменен на editAvatar
-// Обновить аватар
-// Сохранить

@@ -1,20 +1,84 @@
-import React, { createElement } from 'react';
-import Header from './Header/Header.js';
-import Main from './Main/Main.js';
-import Footer from './Footer/Footer.js';
-import PopupWithForm from './PopupWithForm/PopupWithForm.js';
-import ImagePopup from './ImagePopup/ImagePopup.js';
-
-const input = document.createElement('input');
+import React, { createElement } from "react";
+import Header from "./Header/Header.js";
+import Main from "./Main/Main.js";
+import Footer from "./Footer/Footer.js";
+import PopupWithForm from "./PopupWithForm/PopupWithForm.js";
+import ImagePopup from "./ImagePopup/ImagePopup.js";
 
 export default class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      isEditAvatarPopupOpen: false,
+      isEditProfilePopupOpen: false,
+      isAddPlacePopupOpen: false
+    }
+  }
+
+  handleEditAvatarClick = () => {
+    this.setState({ isEditAvatarPopupOpen: true });
+  };
+
+  handleEditProfileClick = () => {
+    this.setState({ isEditProfilePopupOpen: true });
+  };
+
+  handleAddPlaceClick = () => {
+    this.setState({ isAddPlacePopupOpen: true });
+  }
+
+  closeAllPopups = ()=> {
+    this.setState({
+      isEditAvatarPopupOpen: false,
+      isEditProfilePopupOpen: false,
+      isAddPlacePopupOpen: false
+    });
+  }
+
   render() {
     return (
-      <div className="page" name='page'>
+      <div className="page" name="page">
         <Header />
-        <Main />
+        <Main
+          onEditAvatar={this.handleEditAvatarClick}
+          onEditProfile={this.handleEditProfileClick}
+          onAddPlace={this.handleAddPlaceClick}
+        />
         <Footer />
-        <PopupWithForm name='editAvatar' title='БлаБлаБла' btnText='блаблабла' />
+        { this.state.isEditAvatarPopupOpen &&
+          <PopupWithForm
+            name="editAvatar"
+            title="Обновить аватар"
+            btnText="Сохранить"
+            isOpen='popup_opened'
+            onClose={this.closeAllPopups}
+          />
+        }
+        { this.state.isEditProfilePopupOpen &&
+          <PopupWithForm
+            name="editProfile"
+            title="Редактировать профиль"
+            btnText="Сохранить"
+            isOpen='popup_opened'
+            onClose={this.closeAllPopups}
+          />
+        }
+        { this.state.isAddPlacePopupOpen &&
+          <PopupWithForm
+            name="addPlace"
+            title="Новое место"
+            btnText="Создать"
+            isOpen='popup_opened'
+            onClose={this.closeAllPopups}
+          />
+        }
+        <PopupWithForm
+          name="deleteCard"
+          title="Вы уверены?"
+          btnText="Да"
+          onClose={this.closeAllPopups}
+        />
+
         <ImagePopup />
 
         <div className="popup popup_type_edit-avatar">
@@ -162,7 +226,10 @@ export default class App extends React.Component {
               className="popup__button popup__button_type_close"
               type="button"
             ></button>
-            <button className="popup__button popup__button_type_submit" type="submit">
+            <button
+              className="popup__button popup__button_type_submit"
+              type="submit"
+            >
               Да
             </button>
           </div>
