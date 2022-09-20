@@ -24,7 +24,6 @@ export default class App extends React.Component {
   componentDidMount() {
     api.getUserInfo()
       .then((userData) => {
-        console.log('ghdhgdhdg', userData);
         this.setState({
           userName: userData.name,
           userDescription: userData.about,
@@ -36,34 +35,8 @@ export default class App extends React.Component {
       });
 
     api.getInitialCards()
-      .then((result) => {
-        console.log(result);
-        this.setState({cards: result});
-
-        ReactDOM.render((
-        <>
-        { this.state.cards.map((card) => (
-          <article className="card" key={card._id}>
-            <img className="card__image" alt="Изображение" src={card.link} />
-            <div className="card__info">
-              <h2 className="card__title">{card.name}</h2>
-              <div className="card__like">
-                <button
-                  className="card__button card__button_type_like"
-                  type="button"
-                  aria-label="Кнопка лайк"
-                ></button>
-                <p className="card__like-text">{card.likes.length}</p>
-              </div>
-            </div>
-            <button
-              className="card__button card__button_type_delete"
-              type="button"
-              aria-label="Кнопка удаления"
-            ></button>
-          </article>))}
-        </>
-        ), document.querySelector('.cards'));
+      .then((cardsData) => {
+        this.setState({cards: cardsData})
       })
       .catch((err) => {
         console.log(err);
@@ -99,6 +72,7 @@ export default class App extends React.Component {
           userName={this.state.userName}
           userDescription={this.state.userDescription}
           userAvatar={this.state.userAvatar}
+          cards={this.state.cards}
           onEditAvatar={this.handleEditAvatarClick}
           onEditProfile={this.handleEditProfileClick}
           onAddPlace={this.handleAddPlaceClick}

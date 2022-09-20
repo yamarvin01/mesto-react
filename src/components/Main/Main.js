@@ -10,7 +10,11 @@ export default class Main extends React.Component {
       <main className="content">
         <section className="profile">
           <div className="profile__avatar-section">
-            <img className="profile__avatar" alt="Аватарка" src={this.props.userAvatar}/>
+            <img
+              className="profile__avatar"
+              alt="Аватарка"
+              src={this.props.userAvatar}
+            />
             <button
               onClick={this.props.onEditAvatar}
               className="profile__avatar-button"
@@ -36,9 +40,27 @@ export default class Main extends React.Component {
           ></button>
         </section>
         <section className="cards">
-
-          
-
+          {this.props.cards.map((card) => (
+            <article className="card" key={card._id}>
+              <img className="card__image" alt="Изображение" src={card.link} />
+              <div className="card__info">
+                <h2 className="card__title">{card.name}</h2>
+                <div className="card__like">
+                  <button
+                    className="card__button card__button_type_like"
+                    type="button"
+                    aria-label="Кнопка лайк"
+                  ></button>
+                  <p className="card__like-text">{card.likes.length}</p>
+                </div>
+              </div>
+              <button
+                className="card__button card__button_type_delete"
+                type="button"
+                aria-label="Кнопка удаления"
+              ></button>
+            </article>
+          ))}
         </section>
       </main>
     );
