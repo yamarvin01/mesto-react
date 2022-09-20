@@ -64,8 +64,6 @@ export default class App extends React.Component {
           </article>))}
         </>
         ), document.querySelector('.cards'));
-
-
       })
       .catch((err) => {
         console.log(err);

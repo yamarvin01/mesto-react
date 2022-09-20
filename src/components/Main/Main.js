@@ -35,7 +35,11 @@ export default class Main extends React.Component {
             aria-label="Кнопка добавления контента"
           ></button>
         </section>
-        <section className="cards"></section>
+        <section className="cards">
+
+          
+
+        </section>
       </main>
     );
   }
