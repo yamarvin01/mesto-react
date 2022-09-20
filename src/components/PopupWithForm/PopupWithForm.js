@@ -94,6 +94,7 @@ export default class PopupWithForm extends React.Component {
                 </label>
               </>
             )}
+            
             <button
               className="popup__button popup__button_type_submit"
               type="submit"
