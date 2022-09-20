@@ -6,9 +6,3 @@ export const validationConfig = {
   inputErrorClass: "popup__input_type_error",
   errorClass: "popup__error_active",
 };
-
-// Константы главной странице
-export const profile = document.querySelector(".profile");
-export const btnEditProfile = profile.querySelector(".profile__button-edit");
-export const btnEditAvatar = profile.querySelector(".profile__avatar-button");
-export const btnAddCard = profile.querySelector(".profile__button-add");
