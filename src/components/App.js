@@ -23,23 +23,14 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
-    api
-      .getUserInfo()
-      .then((userData) => {
+    Promise.all([api.getUserInfo(), api.getInitialCards()])
+      .then(([userData, cardsData]) => {
         this.setState({
           userName: userData.name,
           userDescription: userData.about,
           userAvatar: userData.avatar,
+          cards: cardsData
         });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-
-    api
-      .getInitialCards()
-      .then((cardsData) => {
-        this.setState({ cards: cardsData });
       })
       .catch((err) => {
         console.log(err);
