@@ -15,7 +15,7 @@ export default class Card extends React.Component {
         <img
           onClick={this.handleClick}
           className="card__image"
-          alt="Изображение"
+          alt={`Изображение ${this.props.cardData.name}`}
           src={this.props.cardData.link}
         />
         <div className="card__info">

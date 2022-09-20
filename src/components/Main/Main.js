@@ -13,7 +13,7 @@ export default class Main extends React.Component {
           <div className="profile__avatar-section">
             <img
               className="profile__avatar"
-              alt="Аватарка"
+              alt="Аватар"
               src={this.props.userAvatar}
             />
             <button
