@@ -5,6 +5,7 @@ import Footer from "./Footer/Footer.js";
 import PopupWithForm from "./PopupWithForm/PopupWithForm.js";
 import ImagePopup from "./ImagePopup/ImagePopup.js";
 import { api } from "../utils/api.js";
+import Input from "./Input/Input.js";
 
 export default class App extends React.Component {
   constructor() {
@@ -23,76 +24,46 @@ export default class App extends React.Component {
     };
 
     this.editAvatarFormChildren = (
-      <label className="popup__field" htmlFor="avatar-input">
-        <input
-          id="avatar-input"
-          className="popup__input popup__input_type_avatar"
-          type="url"
-          name="avatar"
-          placeholder="Ссылка на аватар"
-          required
-        />
-        <span className="avatar-input-error popup__error"></span>
-      </label>
+      <Input
+        name={'avatar'}
+        type={'type'}
+        placeholder={'Ссылка на аватар'}
+      />
     );
 
     this.editProfileFormChildren = (
       <>
-        <label className="popup__field" htmlFor="name-input">
-          <input
-            id="name-input"
-            className="popup__input popup__input_type_name"
-            type="text"
-            name="name"
-            placeholder="Имя"
-            minLength="2"
-            maxLength="40"
-            required
-          />
-          <span className="name-input-error popup__error"></span>
-        </label>
-        <label className="popup__field" htmlFor="about-input">
-          <input
-            id="about-input"
-            className="popup__input popup__input_type_text"
-            type="text"
-            name="about"
-            placeholder="О себе"
-            minLength="2"
-            maxLength="200"
-            required
-          />
-          <span className="about-input-error popup__error"></span>
-        </label>
+        <Input
+          name={'name'}
+          type={'text'}
+          placeholder={'Имя'}
+          minLength={"2"}
+          maxLength={"40"}
+        />
+        <Input
+          name={'about'}
+          type={'text'}
+          placeholder={'О себе'}
+          minLength={"2"}
+          maxLength={"200"}
+        />
       </>
     );
 
     this.addPlaceFormChildren = (
       <>
-        <label className="popup__field" htmlFor="place-input">
-          <input
-            id="place-input"
-            className="popup__input popup__input_type_place"
-            type="text"
-            name="place"
-            placeholder="Название"
-            minLength="2"
-            maxLength="30"
-            required
-          />
-          <span className="place-input-error popup__error"></span>
-        </label>
-        <label className="popup__field" htmlFor="link-input">
-          <input
-            id="link-input"
-            className="popup__input popup__input_type_link"
-            type="url"
-            name="link"
-            placeholder="Ссылка на картинку"
-            required
-          />
-          <span className="link-input-error popup__error"></span>
-        </label>
+        <Input
+          name={'place'}
+          type={'text'}
+          placeholder={'Название'}
+          minLength="2"
+          maxLength="30"
+        />
+        <Input
+          name={'link'}
+          type={'url'}
+          placeholder={'Ссылка на картинку'}
+        />
       </>
     );
   }
