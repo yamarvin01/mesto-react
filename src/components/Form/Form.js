@@ -12,6 +12,7 @@ export default class Form extends React.Component {
         name={this.props.name}
         noValidate
       >
+        {this.props.children}
       </form>
     );
   }
