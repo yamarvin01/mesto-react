@@ -5,11 +5,10 @@ export default class ImagePopup extends React.Component {
     super(props);
   }
 
+  // className={`popup popup_dark popup_type_${this.props.name} ${this.props.isOpen}`}>
   render() {
     return (
-      <div
-        className={`popup popup_dark popup_type_${this.props.name} ${this.props.isOpen}`}
-      >
+      <div className={this.props.isOpen ? 'popup popup_opened' : 'popup'}>
         <div className="popup__container popup__container_type_image">
           <img
             className="popup__image"

@@ -20,7 +20,7 @@ export default class Main extends React.Component {
               onClick={this.props.onEditAvatar}
               className="profile__avatar-button"
               type="button"
-              aria-label="Кнопка редактирования контента"
+              aria-label="Кнопка редактирования аватара"
             ></button>
           </div>
           <div className="profile__edit">
@@ -29,7 +29,7 @@ export default class Main extends React.Component {
               onClick={this.props.onEditProfile}
               className="profile__button-edit"
               type="button"
-              aria-label="Кнопка редактирования контента"
+              aria-label="Кнопка редактирования профиля"
             ></button>
           </div>
           <p className="profile__subtitle">{this.props.userDescription}</p>
@@ -37,7 +37,7 @@ export default class Main extends React.Component {
             onClick={this.props.onAddPlace}
             className="profile__button-add"
             type="button"
-            aria-label="Кнопка добавления контента"
+            aria-label="Кнопка добавления карточки"
           ></button>
         </section>
         <section className="cards">

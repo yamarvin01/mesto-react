@@ -5,9 +5,10 @@ export default class PopupWithForm extends React.Component {
     super(props);
   }
 
+  // <div className={`popup popup_type_${this.props.name} ${this.props.isOpen} ? popup_opened : ''`}>
   render() {
     return (
-      <div className={`popup popup_type_${this.props.name} ${this.props.isOpen}`}>
+      <div className={this.props.isOpen ? 'popup popup_opened' : 'popup'}>
         <div className={`popup__container popup__container_type_${this.props.name}`}>
           <h2 className="popup__title">{this.props.title}</h2>
           <button
@@ -94,7 +95,7 @@ export default class PopupWithForm extends React.Component {
                 </label>
               </>
             )}
-            
+
             <button
               className="popup__button popup__button_type_submit"
               type="submit"

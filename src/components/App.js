@@ -17,6 +17,7 @@ export default class App extends React.Component {
       isEditAvatarPopupOpen: false,
       isEditProfilePopupOpen: false,
       isAddPlacePopupOpen: false,
+      isDeleteCardPopupOpen: false,
       isImagePopupOpen: false,
       selectedCard: {},
     };
@@ -29,7 +30,7 @@ export default class App extends React.Component {
           userName: userData.name,
           userDescription: userData.about,
           userAvatar: userData.avatar,
-          cards: cardsData
+          cards: cardsData,
         });
       })
       .catch((err) => {
@@ -61,8 +62,9 @@ export default class App extends React.Component {
       isEditAvatarPopupOpen: false,
       isEditProfilePopupOpen: false,
       isAddPlacePopupOpen: false,
+      isDeleteCardPopupOpen: false,
       isImagePopupOpen: false,
-      selectedCard: null,
+      selectedCard: {}
     });
   };
 
@@ -81,48 +83,40 @@ export default class App extends React.Component {
           onCardClick={this.handleCardClick}
         />
         <Footer />
-        {this.state.isEditAvatarPopupOpen && (
-          <PopupWithForm
-            name="editAvatar"
-            title="Обновить аватар"
-            btnText="Сохранить"
-            isOpen="popup_opened"
-            onClose={this.closeAllPopups}
-          />
-        )}
-        {this.state.isEditProfilePopupOpen && (
-          <PopupWithForm
-            name="editProfile"
-            title="Редактировать профиль"
-            btnText="Сохранить"
-            isOpen="popup_opened"
-            onClose={this.closeAllPopups}
-          />
-        )}
-        {this.state.isAddPlacePopupOpen && (
-          <PopupWithForm
-            name="addPlace"
-            title="Новое место"
-            btnText="Создать"
-            isOpen="popup_opened"
-            onClose={this.closeAllPopups}
-          />
-        )}
+        <PopupWithForm
+          name="editAvatar"
+          title="Обновить аватар"
+          btnText="Сохранить"
+          isOpen={this.state.isEditAvatarPopupOpen}
+          onClose={this.closeAllPopups}
+        />
+        <PopupWithForm
+          name="editProfile"
+          title="Редактировать профиль"
+          btnText="Сохранить"
+          isOpen={this.state.isEditProfilePopupOpen}
+          onClose={this.closeAllPopups}
+        />
+        <PopupWithForm
+          name="addPlace"
+          title="Новое место"
+          btnText="Создать"
+          isOpen={this.state.isAddPlacePopupOpen}
+          onClose={this.closeAllPopups}
+        />
         <PopupWithForm
           name="deleteCard"
           title="Вы уверены?"
           btnText="Да"
+          isOpen={this.state.isDeleteCardPopupOpen}
           onClose={this.closeAllPopups}
         />
-
-        {this.state.isImagePopupOpen && (
-          <ImagePopup
-            name="image"
-            isOpen="popup_opened"
-            card={this.state.selectedCard}
-            onClose={this.closeAllPopups}
-          />
-        )}
+        <ImagePopup
+          name="image"
+          isOpen={this.state.isImagePopupOpen}
+          card={this.state.selectedCard}
+          onClose={this.closeAllPopups}
+        />
       </div>
     );
   }
