@@ -1,4 +1,5 @@
 import React from "react";
+import ButtonSubmit from "../ButtonSubmit/ButtonSubmit.js";
 
 export default class PopupWithForm extends React.Component {
   constructor(props) {
@@ -24,13 +25,8 @@ export default class PopupWithForm extends React.Component {
           >
             {this.props.children}
 
-            <button
-              className="popup__button popup__button_type_submit"
-              type="submit"
-              aria-label="Сохранить"
-            >
-              {this.props.btnText}
-            </button>
+            <ButtonSubmit>{this.props.btnText}</ButtonSubmit>
+
           </form>
         </div>
       </div>
