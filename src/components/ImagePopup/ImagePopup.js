@@ -1,4 +1,5 @@
 import React from "react";
+import ButtonClose from "../ButtonClose/ButtonClose";
 
 export default class ImagePopup extends React.Component {
   constructor(props) {
@@ -16,12 +17,8 @@ export default class ImagePopup extends React.Component {
             src={this.props.card.link}
           />
           <p className="popup__text">{this.props.card.name}</p>
-          <button
-            onClick={this.props.onClose}
-            className="popup__button popup__button_type_close"
-            type="button"
-            aria-label="Закрыть"
-          ></button>
+
+          <ButtonClose onClose={this.props.onClose} />
         </div>
       </div>
     );
