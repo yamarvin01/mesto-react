@@ -84,7 +84,6 @@ export default class App extends React.Component {
           onCardClick={this.handleCardClick}
         />
         <Footer />
-
         <PopupWithForm
           name="editAvatar"
           title="Обновить аватар"
@@ -94,7 +93,6 @@ export default class App extends React.Component {
         >
           <Input name={'avatar'} type={'type'} placeholder={'Ссылка на аватар'}/>
         </PopupWithForm>
-
         <PopupWithForm
           name="editProfile"
           title="Редактировать профиль"
@@ -105,18 +103,16 @@ export default class App extends React.Component {
           <Input name={'name'} type={'text'} placeholder={'Имя'} minLength={"2"} maxLength={"40"} />
           <Input name={'about'} type={'text'} placeholder={'О себе'} minLength={"2"} maxLength={"200"} />
         </PopupWithForm>
-
         <PopupWithForm
           name="addPlace"
           title="Новое место"
           btnText='Создать'
           isOpen={this.state.isAddPlacePopupOpen}
           onClose={this.closeAllPopups}
-          >
-            <Input name={'place'} type={'text'} placeholder={'Название'} minLength="2" maxLength="30" />
-            <Input name={'link'} type={'url'} placeholder={'Ссылка на картинку'} />
+        >
+          <Input name={'place'} type={'text'} placeholder={'Название'} minLength="2" maxLength="30" />
+          <Input name={'link'} type={'url'} placeholder={'Ссылка на картинку'} />
         </PopupWithForm>
-
         <PopupWithForm
           name="deleteCard"
           title="Вы уверены?"
@@ -125,7 +121,6 @@ export default class App extends React.Component {
           onClose={this.closeAllPopups}
         >
         </PopupWithForm>
-
         <ImagePopup
           name="image"
           isOpen={this.state.isImagePopupOpen}
