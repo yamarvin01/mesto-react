@@ -4,8 +4,10 @@ import Main from "./Main/Main.js";
 import Footer from "./Footer/Footer.js";
 import PopupWithForm from "./PopupWithForm/PopupWithForm.js";
 import ImagePopup from "./ImagePopup/ImagePopup.js";
-import { api } from "../utils/api.js";
+import Form from "./Form/Form.js";
 import Input from "./Input/Input.js";
+import ButtonSubmit from "./ButtonSubmit/ButtonSubmit.js";
+import { api } from "../utils/api.js";
 
 export default class App extends React.Component {
   constructor() {
@@ -22,50 +24,6 @@ export default class App extends React.Component {
       isImagePopupOpen: false,
       selectedCard: {},
     };
-
-    this.editAvatarFormChildren = (
-      <Input
-        name={'avatar'}
-        type={'type'}
-        placeholder={'Ссылка на аватар'}
-      />
-    );
-
-    this.editProfileFormChildren = (
-      <>
-        <Input
-          name={'name'}
-          type={'text'}
-          placeholder={'Имя'}
-          minLength={"2"}
-          maxLength={"40"}
-        />
-        <Input
-          name={'about'}
-          type={'text'}
-          placeholder={'О себе'}
-          minLength={"2"}
-          maxLength={"200"}
-        />
-      </>
-    );
-
-    this.addPlaceFormChildren = (
-      <>
-        <Input
-          name={'place'}
-          type={'text'}
-          placeholder={'Название'}
-          minLength="2"
-          maxLength="30"
-        />
-        <Input
-          name={'link'}
-          type={'url'}
-          placeholder={'Ссылка на картинку'}
-        />
-      </>
-    );
   }
 
   componentDidMount() {
@@ -128,37 +86,54 @@ export default class App extends React.Component {
           onCardClick={this.handleCardClick}
         />
         <Footer />
+
         <PopupWithForm
           name="editAvatar"
           title="Обновить аватар"
-          btnText="Сохранить"
-          children={this.editAvatarFormChildren}
           isOpen={this.state.isEditAvatarPopupOpen}
           onClose={this.closeAllPopups}
-        />
+        >
+          <Form name="editAvatar">
+            <Input name={'avatar'} type={'type'} placeholder={'Ссылка на аватар'}/>
+            <ButtonSubmit>Сохранить</ButtonSubmit>
+          </Form>
+        </PopupWithForm>
+
         <PopupWithForm
           name="editProfile"
           title="Редактировать профиль"
-          btnText="Сохранить"
-          children={this.editProfileFormChildren}
           isOpen={this.state.isEditProfilePopupOpen}
           onClose={this.closeAllPopups}
-        />
+        >
+          <Form name="editProfile">
+            <Input name={'name'} type={'text'} placeholder={'Имя'} minLength={"2"} maxLength={"40"} />
+            <Input name={'about'} type={'text'} placeholder={'О себе'} minLength={"2"} maxLength={"200"} />
+          </Form>
+          <ButtonSubmit>Сохранить</ButtonSubmit>
+        </PopupWithForm>
+
         <PopupWithForm
           name="addPlace"
           title="Новое место"
-          btnText="Создать"
-          children={this.addPlaceFormChildren}
           isOpen={this.state.isAddPlacePopupOpen}
           onClose={this.closeAllPopups}
-        />
+          >
+          <Form name="addPlace">
+            <Input name={'place'} type={'text'} placeholder={'Название'} minLength="2" maxLength="30" />
+            <Input name={'link'} type={'url'} placeholder={'Ссылка на картинку'} />
+            <ButtonSubmit>Создать</ButtonSubmit>
+          </Form>
+        </PopupWithForm>
+
         <PopupWithForm
           name="deleteCard"
           title="Вы уверены?"
-          btnText="Да"
           isOpen={this.state.isDeleteCardPopupOpen}
           onClose={this.closeAllPopups}
-        />
+        >
+          <ButtonSubmit>Да</ButtonSubmit>
+        </PopupWithForm>
+
         <ImagePopup
           name="image"
           isOpen={this.state.isImagePopupOpen}
