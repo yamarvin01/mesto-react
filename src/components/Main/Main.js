@@ -43,7 +43,7 @@ export default class Main extends React.Component {
         <section className="cards">
           {this.props.cards.map((card) => (
             <Card
-              cardData={card}
+              card={card}
               key={card._id}
               onCardClick={this.props.onCardClick}
             />

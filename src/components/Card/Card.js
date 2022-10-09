@@ -6,7 +6,7 @@ export default class Card extends React.Component {
   }
 
   handleClick = () => {
-    this.props.onCardClick(this.props.cardData);
+    this.props.onCardClick(this.props.card);
   };
 
   render() {
@@ -15,11 +15,11 @@ export default class Card extends React.Component {
         <img
           onClick={this.handleClick}
           className="card__image"
-          alt={`Изображение ${this.props.cardData.name}`}
-          src={this.props.cardData.link}
+          alt={`Изображение ${this.props.card.name}`}
+          src={this.props.card.link}
         />
         <div className="card__info">
-          <h2 className="card__title">{this.props.cardData.name}</h2>
+          <h2 className="card__title">{this.props.card.name}</h2>
           <div className="card__like">
             <button
               className="card__button card__button_type_like"
@@ -27,7 +27,7 @@ export default class Card extends React.Component {
               aria-label="Кнопка лайк"
             ></button>
             <p className="card__like-text">
-              {this.props.cardData.likes.length}
+              {this.props.card.likes.length}
             </p>
           </div>
         </div>
