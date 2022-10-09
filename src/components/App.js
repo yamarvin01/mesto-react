@@ -11,13 +11,11 @@ export default function App() {
   const [userName, setUserName] = React.useState('');
   const [userAvatar, setUserAvatar] = React.useState('');
   const [userAbout, setUserAbout] = React.useState('');
-
   const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = React.useState(false);
   const [isEditProfilePopupOpen, setEditProfilePopupOpen] = React.useState(false);
   const [isAddPlacePopupOpen, setAddPlacePopupOpen] = React.useState(false);
   const [isDeleteCardPopupOpen, setDeleteCardPopupOpen] = React.useState(false);
   const [isImagePopupOpen, setImagePopupOpen] = React.useState(false);
-
   const [cards, setCards] = React.useState([]);
   const [selectedCard, setSelectedCard] = React.useState({});
 

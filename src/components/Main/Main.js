@@ -32,7 +32,7 @@ export default class Main extends React.Component {
               aria-label="Кнопка редактирования профиля"
             ></button>
           </div>
-          <p className="profile__subtitle">{this.props.userDescription}</p>
+          <p className="profile__subtitle">{this.props.userAbout}</p>
           <button
             onClick={this.props.onAddPlace}
             className="profile__button-add"
