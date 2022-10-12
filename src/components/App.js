@@ -6,35 +6,31 @@ import PopupWithForm from "./PopupWithForm/PopupWithForm.js";
 import ImagePopup from "./ImagePopup/ImagePopup.js";
 import Input from "./Input/Input.js";
 import { api } from "../utils/api.js";
-
 import { CurrentUserContext } from './context/CurrentUserContext';
 
 export default function App() {
-  const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = React.useState(false);
-  const [isEditProfilePopupOpen, setEditProfilePopupOpen] = React.useState(false);
-  const [isAddPlacePopupOpen, setAddPlacePopupOpen] = React.useState(false);
-  const [isDeleteCardPopupOpen, setDeleteCardPopupOpen] = React.useState(false);
-  const [isImagePopupOpen, setImagePopupOpen] = React.useState(false);
-  const [cards, setCards] = React.useState([]);
-  const [selectedCard, setSelectedCard] = React.useState({});
-
   const [currentUser, setCurrentUser] = React.useState({
     userName: '',
     userAvatar: '',
     userAbout: '',
     _id: ''
   });
+  const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = React.useState(false);
+  const [isEditProfilePopupOpen, setEditProfilePopupOpen] = React.useState(false);
+  const [isAddPlacePopupOpen, setAddPlacePopupOpen] = React.useState(false);
+  const [isDeleteCardPopupOpen, setDeleteCardPopupOpen] = React.useState(false);
+  const [isImagePopupOpen, setImagePopupOpen] = React.useState(false);
+  const [selectedCard, setSelectedCard] = React.useState({});
 
   React.useEffect(() => {
-    Promise.all([api.getUserInfo(), api.getInitialCards()])
-      .then(([userData, cardsData]) => {
+    api.getUserInfo()
+      .then((userData) => {
         setCurrentUser({
           userName: userData.name,
           userAvatar: userData.avatar,
           userAbout: userData.about,
           _id: userData._id
         });
-        setCards(cardsData);
       })
       .catch((err) => {
         console.log(err);
@@ -72,7 +68,6 @@ export default function App() {
       <div className="page" name="page">
         <Header />
         <Main
-          cards={cards}
           onEditAvatar={handleEditAvatarClick}
           onEditProfile={handleEditProfileClick}
           onAddPlace={handleAddPlaceClick}
