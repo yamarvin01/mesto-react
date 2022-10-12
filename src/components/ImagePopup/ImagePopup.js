@@ -24,7 +24,6 @@ export default class ImagePopup extends React.Component {
           />
           <p className="popup__text">{this.props.card.name}</p>
         </div>
-        {this.props.children}
       </div>
     );
   }

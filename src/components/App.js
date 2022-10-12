@@ -8,8 +8,6 @@ import Input from "./Input/Input.js";
 import { api } from "../utils/api.js";
 
 import { CurrentUserContext } from './context/CurrentUserContext';
-console.log(CurrentUserContext);
-console.log(CurrentUserContext.Provider);
 
 export default function App() {
   const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = React.useState(false);
@@ -23,7 +21,8 @@ export default function App() {
   const [currentUser, setCurrentUser] = React.useState({
     userName: '',
     userAvatar: '',
-    userAbout: ''
+    userAbout: '',
+    _id: ''
   });
 
   React.useEffect(() => {
@@ -32,7 +31,8 @@ export default function App() {
         setCurrentUser({
           userName: userData.name,
           userAvatar: userData.avatar,
-          userAbout: userData.about
+          userAbout: userData.about,
+          _id: userData._id
         });
         setCards(cardsData);
       })
@@ -72,9 +72,6 @@ export default function App() {
       <div className="page" name="page">
         <Header />
         <Main
-          userName={currentUser.userName}
-          userAbout={currentUser.userAbout}
-          userAvatar={currentUser.userAvatar}
           cards={cards}
           onEditAvatar={handleEditAvatarClick}
           onEditProfile={handleEditProfileClick}
