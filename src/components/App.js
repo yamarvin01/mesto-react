@@ -3,6 +3,7 @@ import Header from "./Header/Header.js";
 import Main from "./Main/Main.js";
 import Footer from "./Footer/Footer.js";
 import PopupWithForm from "./PopupWithForm/PopupWithForm.js";
+import EditProfilePopup from "./EditProfilePopup/EditProfilePopup.js";
 import ImagePopup from "./ImagePopup/ImagePopup.js";
 import Input from "./Input/Input.js";
 import { api } from "../utils/api.js";
@@ -83,16 +84,13 @@ export default function App() {
         >
           <Input name={"avatar"} type={"type"} placeholder={"Ссылка на аватар"} />
         </PopupWithForm>
-        <PopupWithForm
-          name="editProfile"
-          title="Редактировать профиль"
-          btnText="Сохранить"
+
+        <EditProfilePopup
           isOpen={isEditProfilePopupOpen}
           onClose={closeAllPopups}
         >
-          <Input name={"name"} type={"text"} placeholder={"Имя"} minLength={"2"} maxLength={"40"} />
-          <Input name={"about"} type={"text"} placeholder={"О себе"} minLength={"2"} maxLength={"200"} />
-        </PopupWithForm>
+        </EditProfilePopup>
+
         <PopupWithForm
           name="addPlace"
           title="Новое место"
