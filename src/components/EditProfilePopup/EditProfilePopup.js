@@ -31,7 +31,7 @@ export default function EditProfilePopup(props) {
       <label className="popup__field" htmlFor="name">
         <input
           onChange={handleNameChange}
-          value={nameValue || ""}
+          value={nameValue}
           className="popup__input popup__input_type_name"
           name="name"
           id="name"
@@ -46,7 +46,7 @@ export default function EditProfilePopup(props) {
       <label className="popup__field" htmlFor="about">
         <input
           onChange={handleAboutChange}
-          value={aboutValue || ""}
+          value={aboutValue}
           className="popup__input popup__input_type_about"
           name="about"
           id="about"
