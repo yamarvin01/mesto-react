@@ -20,6 +20,10 @@ export default function Card(props) {
     props.onCardLike(props.card);
   }
 
+  function handleDeleteClick() {
+    props.onCardDelete(props.card);
+  }
+
   return (
     <article className="card">
       <img
@@ -41,6 +45,7 @@ export default function Card(props) {
         </div>
       </div>
       <button
+        onClick={handleDeleteClick}
         className={cardDeleteButtonClassName}
         type="button"
         aria-label="Кнопка удаления"
