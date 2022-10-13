@@ -115,8 +115,7 @@ export default function App() {
           isOpen={isImagePopupOpen}
           card={selectedCard}
           onClose={closeAllPopups}
-        >
-        </ImagePopup>
+        />
       </div>
     </CurrentUserContext.Provider>
   );
