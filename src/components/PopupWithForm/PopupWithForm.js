@@ -1,4 +1,3 @@
-import React from "react";
 import Form from "../Form/Form.js";
 import ButtonClose from "../ButtonClose/ButtonClose.js";
 import ButtonSubmit from "../ButtonSubmit/ButtonSubmit.js";
@@ -12,12 +11,13 @@ export default function PopupWithForm(props) {
           : `popup popup_type_${props.name}`
       }
     >
-      <div
-        className={`popup__container popup__container_type_${props.name}`}
-      >
+      <div className={`popup__container popup__container_type_${props.name}`} >
         <h2 className="popup__title">{props.title}</h2>
         <ButtonClose onClose={props.onClose} />
-        <Form name={props.name}>
+        <Form
+          onSubmit={onSubmit}
+          name={props.name}
+        >
           {props.children}
           <ButtonSubmit>{props.btnText}</ButtonSubmit>
         </Form>
