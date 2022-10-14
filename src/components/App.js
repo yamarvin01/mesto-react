@@ -109,22 +109,18 @@ export default function App() {
           onCardClick={handleCardClick}
         />
         <Footer />
-
         <EditAvatarPopup
           onUpdateAvatar={handleUpdateAvatar}
           isOpen={isEditAvatarPopupOpen}
           onClose={closeAllPopups}
         >
         </EditAvatarPopup>
-
         <EditProfilePopup
           onUpdateUser={handleUpdateUser}
           isOpen={isEditProfilePopupOpen}
           onClose={closeAllPopups}
         ></EditProfilePopup>
-
         <PopupWithForm
-          // onSubmit={onSubmitAddPlace}
           name="addPlace"
           title="Новое место"
           btnText="Создать"
@@ -145,7 +141,6 @@ export default function App() {
           />
         </PopupWithForm>
         <PopupWithForm
-          // onSubmit={onSubmitDeleteCard}
           name="deleteCard"
           title="Вы уверены?"
           btnText="Да"

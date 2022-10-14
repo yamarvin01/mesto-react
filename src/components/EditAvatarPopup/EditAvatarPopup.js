@@ -2,7 +2,6 @@ import PopupWithForm from "../PopupWithForm/PopupWithForm.js";
 import React from "react";
 
 export default function EditAvatarPopup(props) {
-
   const inputRef = React.useRef();
 
   function handleSubmit(evt) {
@@ -10,6 +9,7 @@ export default function EditAvatarPopup(props) {
     props.onUpdateAvatar({
       avatar: inputRef.current.value
     });
+    evt.target.reset();
   }
 
   return (
