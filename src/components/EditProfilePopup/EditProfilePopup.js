@@ -21,8 +21,17 @@ export default function EditProfilePopup(props) {
     setAboutValue(evt.target.value);
   }
 
+  function handleSubmit(evt) {
+    evt.preventDefault();
+    props.onUpdateUser({
+      name: nameValue,
+      about: aboutValue
+    });
+  }
+
   return (
     <PopupWithForm
+      onSubmit={handleSubmit}
       name="editProfile"
       title="Редактировать профиль"
       btnText="Сохранить"
