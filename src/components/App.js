@@ -82,6 +82,22 @@ export default function App() {
       });
   }
 
+  function handleUpdateAvatar(newAvatar) {
+    api.editProfileAvatar(newAvatar.avatar)
+      .then((userData) => {
+        setCurrentUser({
+          userName: userData.name,
+          userAvatar: userData.avatar,
+          userAbout: userData.about,
+          _id: userData._id
+        });
+        closeAllPopups();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page" name="page">
@@ -95,6 +111,7 @@ export default function App() {
         <Footer />
 
         <EditAvatarPopup
+          onUpdateAvatar={handleUpdateAvatar}
           isOpen={isEditAvatarPopupOpen}
           onClose={closeAllPopups}
         >
