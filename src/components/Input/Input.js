@@ -4,6 +4,7 @@ export default function Input(props) {
       <input
         value={props.value}
         onChange={props.onChange}
+        ref={props.myRef}
         className={`popup__input popup__input_type_${props.name}`}
         name={props.name}
         id={props.name}

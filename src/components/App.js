@@ -4,6 +4,7 @@ import Main from "./Main/Main.js";
 import Footer from "./Footer/Footer.js";
 import PopupWithForm from "./PopupWithForm/PopupWithForm.js";
 import EditProfilePopup from "./EditProfilePopup/EditProfilePopup.js";
+import EditAvatarPopup from "./EditAvatarPopup/EditAvatarPopup.js";
 import ImagePopup from "./ImagePopup/ImagePopup.js";
 import Input from "./Input/Input.js";
 import { api } from "../utils/api.js";
@@ -92,20 +93,12 @@ export default function App() {
           onCardClick={handleCardClick}
         />
         <Footer />
-        <PopupWithForm
-          // onSubmit={onSubmitEditAvatar}
-          name="editAvatar"
-          title="Обновить аватар"
-          btnText="Сохранить"
+
+        <EditAvatarPopup
           isOpen={isEditAvatarPopupOpen}
           onClose={closeAllPopups}
         >
-          <Input
-            name={"avatar"}
-            type={"type"}
-            placeholder={"Ссылка на аватар"}
-          />
-        </PopupWithForm>
+        </EditAvatarPopup>
 
         <EditProfilePopup
           onUpdateUser={handleUpdateUser}
