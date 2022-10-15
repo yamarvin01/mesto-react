@@ -1,6 +1,7 @@
 import { api } from "../utils/api.js";
 import { CurrentUserContext } from "./context/CurrentUserContext.js";
 import AddPlacePopup from "./AddPlacePopup/AddPlacePopup.js";
+import DeleteCardPopup from "./DeleteCardPopup/DeleteCardPopup.js";
 import EditAvatarPopup from "./EditAvatarPopup/EditAvatarPopup.js";
 import EditProfilePopup from "./EditProfilePopup/EditProfilePopup.js";
 import Footer from "./Footer/Footer.js";
@@ -87,12 +88,19 @@ export default function App() {
   }
 
   function handleCardDelete(card) {
-    api.deleteCard(card._id)
+    setDeleteCardPopupOpen(true);
+    setSelectedCard(card);
+  }
+
+  function handleDeleteCardSubmit(evt) {
+    evt.preventDefault();
+    api.deleteCard(selectedCard._id)
       .then(() => {
         const newCardsArray = cards.filter((item) => {
-          return item._id !== card._id;
+          return item._id !== selectedCard._id;
         });
         setCards(newCardsArray);
+        closeAllPopups();
       })
       .catch((err) => {
         console.log(err);
@@ -166,13 +174,14 @@ export default function App() {
           onClose={closeAllPopups}
         >
         </AddPlacePopup>
-        <PopupWithForm
-          name="deleteCard"
-          title="Вы уверены?"
-          btnText="Да"
+
+        <DeleteCardPopup
+          onDeleteCard={handleDeleteCardSubmit}
           isOpen={isDeleteCardPopupOpen}
           onClose={closeAllPopups}
-        ></PopupWithForm>
+        >
+        </DeleteCardPopup>
+
         <ImagePopup
           name="image"
           isOpen={isImagePopupOpen}
