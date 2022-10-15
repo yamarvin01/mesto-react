@@ -3,22 +3,22 @@ import Input from "../Input/Input.js";
 import PopupWithForm from "../PopupWithForm/PopupWithForm.js";
 
 export default function AddPlacePopup(props) {
-  const [titleValue, setTitleValue] = React.useState('');
-  const [urlValue, setUrlValue] = React.useState('');
+  const [nameValue, setNameValue] = React.useState('');
+  const [linkValue, setLinkValue] = React.useState('');
 
-  function handleTitleChange(evt) {
-    setTitleValue(evt.target.value);
+  function handleNameChange(evt) {
+    setNameValue(evt.target.value);
   }
 
-  function handleUrlChange(evt) {
-    setUrlValue(evt.target.value);
+  function handleLinkChange(evt) {
+    setLinkValue(evt.target.value);
   }
 
   function handleSubmit(evt) {
     evt.preventDefault();
     props.onAddCard({
-      title: titleValue,
-      url: urlValue
+      name: nameValue,
+      link: linkValue
     });
   }
 
@@ -32,8 +32,8 @@ export default function AddPlacePopup(props) {
       onClose={props.onClose}
     >
       <Input
-        value={titleValue}
-        onChange={handleTitleChange}
+        value={nameValue}
+        onChange={handleNameChange}
         name={"place"}
         type={"text"}
         placeholder={"Название"}
@@ -41,8 +41,8 @@ export default function AddPlacePopup(props) {
         maxLength="30"
       />
       <Input
-        value={urlValue}
-        onChange={handleUrlChange}
+        value={linkValue}
+        onChange={handleLinkChange}
         name={"link"}
         type={"url"}
         placeholder={"Ссылка на картинку"}

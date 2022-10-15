@@ -100,9 +100,15 @@ export default function App() {
       });
   }
 
-  function handleAddCard(newCard) {
-    console.log(newCard);
-
+  function handleAddPlaceSubmit(newCardData) {
+    api.addNewCard(newCardData)
+      .then((newCard) => {
+        setCards([newCard, ...cards]);
+        closeAllPopups();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   function handleEditAvatarClick() {
@@ -157,7 +163,7 @@ export default function App() {
         ></EditProfilePopup>
 
         <AddPlacePopup
-          onAddCard={handleAddCard}
+          onAddCard={handleAddPlaceSubmit}
           isOpen={isAddPlacePopupOpen}
           onClose={closeAllPopups}
         >
