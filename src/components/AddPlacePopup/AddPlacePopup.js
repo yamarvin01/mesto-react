@@ -8,7 +8,6 @@ export default function AddPlacePopup(props) {
 
   function handleNameChange(evt) {
     setNameValue(evt.target.value);
-    console.log(evt);
   }
 
   function handleLinkChange(evt) {
