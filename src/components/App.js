@@ -6,7 +6,6 @@ import EditProfilePopup from "./EditProfilePopup/EditProfilePopup.js";
 import Footer from "./Footer/Footer.js";
 import Header from "./Header/Header.js";
 import ImagePopup from "./ImagePopup/ImagePopup.js";
-import Input from "./Input/Input.js";
 import Main from "./Main/Main.js";
 import PopupWithForm from "./PopupWithForm/PopupWithForm.js";
 import React from "react";
@@ -161,14 +160,12 @@ export default function App() {
           isOpen={isEditProfilePopupOpen}
           onClose={closeAllPopups}
         ></EditProfilePopup>
-
         <AddPlacePopup
           onAddCard={handleAddPlaceSubmit}
           isOpen={isAddPlacePopupOpen}
           onClose={closeAllPopups}
         >
         </AddPlacePopup>
-
         <PopupWithForm
           name="deleteCard"
           title="Вы уверены?"
