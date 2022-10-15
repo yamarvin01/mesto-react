@@ -2,8 +2,7 @@ class Api {
   constructor(options) {
     this._options = options;
     this._baseUrl = this._options.baseUrl;
-    this._authorization = this._options.headers.authorization;
-    this._contentType = this._options.headers["Content-Type"];
+    this._headers = this._options.headers;
   }
 
   _checkResponse(response) {
@@ -14,34 +13,27 @@ class Api {
   }
 
   _request(url, options) {
-    return fetch(url, options).then(this._checkResponse)
+    return fetch(url, options).then(this._checkResponse);
   }
 
   getUserInfo() {
     return this._request(this._baseUrl + "/users/me", {
       method: "GET",
-      headers: {
-        authorization: this._authorization,
-      },
+      headers: this._headers,
     });
   }
 
   getInitialCards() {
     return this._request(this._baseUrl + "/cards", {
       method: "GET",
-      headers: {
-        authorization: this._authorization,
-      },
+      headers: this._headers,
     });
   }
 
   editProfile({ name, about }) {
     return this._request(this._baseUrl + "/users/me", {
       method: "PATCH",
-      headers: {
-        authorization: this._authorization,
-        "Content-Type": this._contentType,
-      },
+      headers: this._headers,
       body: JSON.stringify({
         name: name,
         about: about,
@@ -52,10 +44,7 @@ class Api {
   editProfileAvatar(avatar) {
     return this._request(this._baseUrl + "/users/me/avatar", {
       method: "PATCH",
-      headers: {
-        authorization: this._authorization,
-        "Content-Type": this._contentType,
-      },
+      headers: this._headers,
       body: JSON.stringify({
         avatar: avatar,
       }),
@@ -65,10 +54,7 @@ class Api {
   addNewCard({ name, link }) {
     return this._request(this._baseUrl + "/cards", {
       method: "POST",
-      headers: {
-        authorization: this._authorization,
-        "Content-Type": this._contentType,
-      },
+      headers: this._headers,
       body: JSON.stringify({ name: name, link: link }),
     });
   }
@@ -76,27 +62,21 @@ class Api {
   deleteCard(cardId) {
     return this._request(this._baseUrl + `/cards/${cardId}`, {
       method: "DELETE",
-      headers: {
-        authorization: this._authorization,
-      },
+      headers: this._headers,
     });
   }
 
   changeLikeCardStatus(cardId, isLiked) {
-    if(isLiked) {
+    if (isLiked) {
       return this._request(this._baseUrl + `/cards/${cardId}/likes`, {
         method: "DELETE",
-        headers: {
-          authorization: this._authorization,
-        },
+        headers: this._headers,
       });
     }
-    if(!isLiked) {
+    if (!isLiked) {
       return this._request(this._baseUrl + `/cards/${cardId}/likes`, {
         method: "PUT",
-        headers: {
-          authorization: this._authorization,
-        },
+        headers: this._headers,
       });
     }
   }
