@@ -1,14 +1,14 @@
-import React from "react";
-import Header from "./Header/Header.js";
-import Main from "./Main/Main.js";
-import Footer from "./Footer/Footer.js";
-import PopupWithForm from "./PopupWithForm/PopupWithForm.js";
-import EditProfilePopup from "./EditProfilePopup/EditProfilePopup.js";
-import EditAvatarPopup from "./EditAvatarPopup/EditAvatarPopup.js";
-import ImagePopup from "./ImagePopup/ImagePopup.js";
-import Input from "./Input/Input.js";
 import { api } from "../utils/api.js";
 import { CurrentUserContext } from "./context/CurrentUserContext.js";
+import EditAvatarPopup from "./EditAvatarPopup/EditAvatarPopup.js";
+import EditProfilePopup from "./EditProfilePopup/EditProfilePopup.js";
+import Footer from "./Footer/Footer.js";
+import Header from "./Header/Header.js";
+import ImagePopup from "./ImagePopup/ImagePopup.js";
+import Input from "./Input/Input.js";
+import Main from "./Main/Main.js";
+import PopupWithForm from "./PopupWithForm/PopupWithForm.js";
+import React from "react";
 
 export default function App() {
   const [currentUser, setCurrentUser] = React.useState({
@@ -18,12 +18,12 @@ export default function App() {
     _id: "",
   });
   const [cards, setCards] = React.useState([]);
+  const [selectedCard, setSelectedCard] = React.useState({});
   const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = React.useState(false);
   const [isEditProfilePopupOpen, setEditProfilePopupOpen] = React.useState(false);
   const [isAddPlacePopupOpen, setAddPlacePopupOpen] = React.useState(false);
   const [isDeleteCardPopupOpen, setDeleteCardPopupOpen] = React.useState(false);
   const [isImagePopupOpen, setImagePopupOpen] = React.useState(false);
-  const [selectedCard, setSelectedCard] = React.useState({});
 
   React.useEffect(() => {
     Promise.all([api.getUserInfo(), api.getInitialCards()])
@@ -40,6 +40,38 @@ export default function App() {
         console.log(err);
       });
   });
+
+  function handleUpdateAvatar(newAvatar) {
+    api.editProfileAvatar(newAvatar.avatar)
+      .then((userData) => {
+        setCurrentUser({
+          userName: userData.name,
+          userAvatar: userData.avatar,
+          userAbout: userData.about,
+          _id: userData._id
+        });
+        closeAllPopups();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  function handleUpdateUser(newUserData) {
+    api.editProfile(newUserData)
+      .then((userData) => {
+        setCurrentUser({
+          userName: userData.name,
+          userAvatar: userData.avatar,
+          userAbout: userData.about,
+          _id: userData._id,
+        });
+        closeAllPopups();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
   function handleCardLike(card) {
     const isLiked = card.likes.some((i) => i._id === currentUser._id);
@@ -91,38 +123,6 @@ export default function App() {
     setDeleteCardPopupOpen(false);
     setImagePopupOpen(false);
     setSelectedCard({});
-  }
-
-  function handleUpdateUser(newUserData) {
-    api.editProfile(newUserData)
-      .then((userData) => {
-        setCurrentUser({
-          userName: userData.name,
-          userAvatar: userData.avatar,
-          userAbout: userData.about,
-          _id: userData._id,
-        });
-        closeAllPopups();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
-
-  function handleUpdateAvatar(newAvatar) {
-    api.editProfileAvatar(newAvatar.avatar)
-      .then((userData) => {
-        setCurrentUser({
-          userName: userData.name,
-          userAvatar: userData.avatar,
-          userAbout: userData.about,
-          _id: userData._id
-        });
-        closeAllPopups();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
   }
 
   return (
