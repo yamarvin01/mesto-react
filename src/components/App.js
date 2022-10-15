@@ -1,5 +1,6 @@
 import { api } from "../utils/api.js";
 import { CurrentUserContext } from "./context/CurrentUserContext.js";
+import AddPlacePopup from "./AddPlacePopup/AddPlacePopup.js";
 import EditAvatarPopup from "./EditAvatarPopup/EditAvatarPopup.js";
 import EditProfilePopup from "./EditProfilePopup/EditProfilePopup.js";
 import Footer from "./Footer/Footer.js";
@@ -99,6 +100,11 @@ export default function App() {
       });
   }
 
+  function handleAddCard(newCard) {
+    console.log(newCard);
+
+  }
+
   function handleEditAvatarClick() {
     setEditAvatarPopupOpen(true);
   }
@@ -149,26 +155,14 @@ export default function App() {
           isOpen={isEditProfilePopupOpen}
           onClose={closeAllPopups}
         ></EditProfilePopup>
-        <PopupWithForm
-          name="addPlace"
-          title="Новое место"
-          btnText="Создать"
+
+        <AddPlacePopup
+          onAddCard={handleAddCard}
           isOpen={isAddPlacePopupOpen}
           onClose={closeAllPopups}
         >
-          <Input
-            name={"place"}
-            type={"text"}
-            placeholder={"Название"}
-            minLength="2"
-            maxLength="30"
-          />
-          <Input
-            name={"link"}
-            type={"url"}
-            placeholder={"Ссылка на картинку"}
-          />
-        </PopupWithForm>
+        </AddPlacePopup>
+
         <PopupWithForm
           name="deleteCard"
           title="Вы уверены?"
