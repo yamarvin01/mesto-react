@@ -134,6 +134,18 @@ export default function App() {
     setImagePopupOpen(true);
   }
 
+  function handleClickClosePopup(evt) {
+    if(evt.target.classList.contains("popup")) {
+      closeAllPopups();
+    }
+  }
+
+  function handleEscClosePopup(evt) {
+    if(evt.key === "Escape") {
+      closeAllPopups();
+    }
+  }
+
   function closeAllPopups() {
     setEditAvatarPopupOpen(false);
     setEditProfilePopupOpen(false);
@@ -145,7 +157,10 @@ export default function App() {
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
-      <div className="page" name="page">
+      <div className="page" name="page"
+        onClick={handleClickClosePopup}
+        onKeyDown={handleEscClosePopup}
+      >
         <Header />
         <Main
           onEditAvatar={handleEditAvatarClick}
@@ -173,14 +188,12 @@ export default function App() {
           onClose={closeAllPopups}
         >
         </AddPlacePopup>
-
         <DeleteCardPopup
           onDeleteCard={handleCardDeleteSubmit}
           isOpen={isDeleteCardPopupOpen}
           onClose={closeAllPopups}
         >
         </DeleteCardPopup>
-
         <ImagePopup
           name="image"
           isOpen={isImagePopupOpen}
