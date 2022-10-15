@@ -17,6 +17,7 @@ export default function App() {
     userAbout: "",
     _id: "",
   });
+  const [cards, setCards] = React.useState([]);
   const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = React.useState(false);
   const [isEditProfilePopupOpen, setEditProfilePopupOpen] = React.useState(false);
   const [isAddPlacePopupOpen, setAddPlacePopupOpen] = React.useState(false);
@@ -25,20 +26,46 @@ export default function App() {
   const [selectedCard, setSelectedCard] = React.useState({});
 
   React.useEffect(() => {
-    api
-      .getUserInfo()
-      .then((userData) => {
+    Promise.all([api.getUserInfo(), api.getInitialCards()])
+      .then(([userData, cardList]) => {
         setCurrentUser({
           userName: userData.name,
           userAvatar: userData.avatar,
           userAbout: userData.about,
           _id: userData._id,
         });
+        setCards(cardList);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  });
+
+  function handleCardLike(card) {
+    const isLiked = card.likes.some((i) => i._id === currentUser._id);
+    api.changeLikeCardStatus(card._id, isLiked)
+      .then((newCard) => {
+        setCards((state) =>
+          state.map((c) => (c._id === card._id ? newCard : c))
+        );
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  function handleCardDelete(card) {
+    api.deleteCard(card._id)
+      .then(() => {
+        const newCardsArray = cards.filter((item) => {
+          return item._id !== card._id;
+        });
+        setCards(newCardsArray);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
   function handleEditAvatarClick() {
     setEditAvatarPopupOpen(true);
@@ -107,6 +134,10 @@ export default function App() {
           onEditProfile={handleEditProfileClick}
           onAddPlace={handleAddPlaceClick}
           onCardClick={handleCardClick}
+
+          cards={cards}
+          onCardLike={handleCardLike}
+          onCardDelete={handleCardDelete}
         />
         <Footer />
         <EditAvatarPopup
