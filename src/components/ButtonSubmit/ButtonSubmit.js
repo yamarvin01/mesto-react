@@ -1,19 +1,11 @@
-import React from "react";
-
-export default class ButtonSubmit extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <button
-        className="popup__button popup__button_type_submit"
-        type="submit"
-        aria-label="Сохранить"
-      >
-        {this.props.children}
-      </button>
-    );
-  }
+export default function ButtonSubmit(props) {
+  return (
+    <button
+      className="popup__button popup__button_type_submit"
+      type="submit"
+      aria-label="Сохранить"
+    >
+      {props.children}
+    </button>
+  );
 }

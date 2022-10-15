@@ -140,6 +140,7 @@ export default function App() {
     }
   }
 
+  // TODO: при нажатии Esc, попап с картинкой не закрывается
   function handleEscClosePopup(evt) {
     if(evt.key === "Escape") {
       closeAllPopups();
