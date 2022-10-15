@@ -39,7 +39,7 @@ export default function App() {
       .catch((err) => {
         console.log(err);
       });
-  });
+  }, []);
 
   function handleUpdateAvatar(newAvatar) {
     api.editProfileAvatar(newAvatar.avatar)
@@ -48,7 +48,7 @@ export default function App() {
           userName: userData.name,
           userAvatar: userData.avatar,
           userAbout: userData.about,
-          _id: userData._id
+          _id: userData._id,
         });
         closeAllPopups();
       })
@@ -134,7 +134,6 @@ export default function App() {
           onEditProfile={handleEditProfileClick}
           onAddPlace={handleAddPlaceClick}
           onCardClick={handleCardClick}
-
           cards={cards}
           onCardLike={handleCardLike}
           onCardDelete={handleCardDelete}
@@ -144,8 +143,7 @@ export default function App() {
           onUpdateAvatar={handleUpdateAvatar}
           isOpen={isEditAvatarPopupOpen}
           onClose={closeAllPopups}
-        >
-        </EditAvatarPopup>
+        ></EditAvatarPopup>
         <EditProfilePopup
           onUpdateUser={handleUpdateUser}
           isOpen={isEditProfilePopupOpen}
