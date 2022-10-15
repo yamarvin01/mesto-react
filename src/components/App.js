@@ -1,5 +1,5 @@
 import { api } from "../utils/api.js";
-import { CurrentUserContext } from "./context/CurrentUserContext.js";
+import { CurrentUserContext } from "../context/CurrentUserContext.js";
 import AddPlacePopup from "./AddPlacePopup/AddPlacePopup.js";
 import DeleteCardPopup from "./DeleteCardPopup/DeleteCardPopup.js";
 import EditAvatarPopup from "./EditAvatarPopup/EditAvatarPopup.js";
