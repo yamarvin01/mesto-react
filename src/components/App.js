@@ -144,6 +144,7 @@ export default function App() {
     if(evt.key === "Escape") {
       closeAllPopups();
     }
+    console.log(1);
   }
 
   function closeAllPopups() {
@@ -159,7 +160,7 @@ export default function App() {
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page" name="page"
         onClick={handleClickClosePopup}
-        onKeyDown={handleEscClosePopup}
+        onKeyUp={handleEscClosePopup}
       >
         <Header />
         <Main
