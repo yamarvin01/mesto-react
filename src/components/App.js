@@ -8,7 +8,6 @@ import Footer from "./Footer/Footer.js";
 import Header from "./Header/Header.js";
 import ImagePopup from "./ImagePopup/ImagePopup.js";
 import Main from "./Main/Main.js";
-import PopupWithForm from "./PopupWithForm/PopupWithForm.js";
 import React from "react";
 
 export default function App() {
@@ -92,7 +91,7 @@ export default function App() {
     setSelectedCard(card);
   }
 
-  function handleDeleteCardSubmit(evt) {
+  function handleCardDeleteSubmit(evt) {
     evt.preventDefault();
     api.deleteCard(selectedCard._id)
       .then(() => {
@@ -176,7 +175,7 @@ export default function App() {
         </AddPlacePopup>
 
         <DeleteCardPopup
-          onDeleteCard={handleDeleteCardSubmit}
+          onDeleteCard={handleCardDeleteSubmit}
           isOpen={isDeleteCardPopupOpen}
           onClose={closeAllPopups}
         >
