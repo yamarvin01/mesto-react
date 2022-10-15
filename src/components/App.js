@@ -144,7 +144,6 @@ export default function App() {
     if(evt.key === "Escape") {
       closeAllPopups();
     }
-    console.log(1);
   }
 
   function closeAllPopups() {
