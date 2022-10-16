@@ -3,8 +3,13 @@ import Input from "../Input/Input.js";
 import PopupWithForm from "../PopupWithForm/PopupWithForm.js";
 
 export default function AddPlacePopup(props) {
-  const [nameValue, setNameValue] = React.useState('');
-  const [linkValue, setLinkValue] = React.useState('');
+  const [nameValue, setNameValue] = React.useState("");
+  const [linkValue, setLinkValue] = React.useState("");
+
+  React.useEffect(() => {
+    setNameValue("");
+    setLinkValue("");
+  }, [props.isOpen]);
 
   function handleNameChange(evt) {
     setNameValue(evt.target.value);
@@ -18,7 +23,7 @@ export default function AddPlacePopup(props) {
     evt.preventDefault();
     props.onAddCard({
       name: nameValue,
-      link: linkValue
+      link: linkValue,
     });
   }
 
