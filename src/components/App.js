@@ -8,7 +8,7 @@ import Footer from "./Footer/Footer.js";
 import Header from "./Header/Header.js";
 import ImagePopup from "./ImagePopup/ImagePopup.js";
 import Main from "./Main/Main.js";
-import React, { useEffect } from "react";
+import React from "react";
 
 export default function App() {
   const [currentUser, setCurrentUser] = React.useState({});
