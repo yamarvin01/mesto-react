@@ -13,6 +13,7 @@ import React from "react";
 export default function App() {
   const [currentUser, setCurrentUser] = React.useState({});
   const [cards, setCards] = React.useState([]);
+  const [isLoading, setIsLoading] = React.useState(false);
   const [selectedCard, setSelectedCard] = React.useState({});
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
@@ -32,6 +33,7 @@ export default function App() {
   }, []);
 
   function handleUpdateAvatar(newAvatar) {
+    setIsLoading(true);
     api.editProfileAvatar(newAvatar.avatar)
       .then((userData) => {
         setCurrentUser(userData);
@@ -39,10 +41,14 @@ export default function App() {
       })
       .catch((err) => {
         console.log(err);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   }
 
   function handleUpdateUser(newUserData) {
+    setIsLoading(true);
     api.editProfile(newUserData)
       .then((userData) => {
         setCurrentUser(userData);
@@ -50,6 +56,9 @@ export default function App() {
       })
       .catch((err) => {
         console.log(err);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   }
 
@@ -73,25 +82,22 @@ export default function App() {
 
   function handleCardDeleteSubmit(evt) {
     evt.preventDefault();
+    setIsLoading(true);
     api.deleteCard(selectedCard._id)
       .then(() => {
-        // const newCardsArray = cards.filter((item) => {
-        //   return item._id !== selectedCard._id;
-        // });
-        // setCards(newCardsArray);
-        setCards((state) => {
-          return state.filter((card) => {
-            return card._id !== selectedCard._id;
-          });
-        });
+        setCards(state => state.filter(card => card._id !== selectedCard._id));
         closeAllPopups();
       })
       .catch((err) => {
         console.log(err);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   }
 
   function handleAddPlaceSubmit(newCardData) {
+    setIsLoading(true);
     api.addNewCard(newCardData)
       .then((newCard) => {
         setCards([newCard, ...cards]);
@@ -99,6 +105,9 @@ export default function App() {
       })
       .catch((err) => {
         console.log(err);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   }
 
@@ -160,22 +169,26 @@ export default function App() {
         <Footer />
         <EditAvatarPopup
           onUpdateAvatar={handleUpdateAvatar}
+          isLoading={isLoading}
           isOpen={isEditAvatarPopupOpen}
           onClose={closeAllPopups}
         ></EditAvatarPopup>
         <EditProfilePopup
           onUpdateUser={handleUpdateUser}
+          isLoading={isLoading}
           isOpen={isEditProfilePopupOpen}
           onClose={closeAllPopups}
         ></EditProfilePopup>
         <AddPlacePopup
           onAddCard={handleAddPlaceSubmit}
+          isLoading={isLoading}
           isOpen={isAddPlacePopupOpen}
           onClose={closeAllPopups}
         >
         </AddPlacePopup>
         <DeleteCardPopup
           onDeleteCard={handleCardDeleteSubmit}
+          isLoading={isLoading}
           isOpen={isDeleteCardPopupOpen}
           onClose={closeAllPopups}
         >

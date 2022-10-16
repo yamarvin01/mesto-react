@@ -27,7 +27,7 @@ export default function AddPlacePopup(props) {
       onSubmit={handleSubmit}
       name="addPlace"
       title="Новое место"
-      btnText="Создать"
+      btnText={props.isLoading ? "Сохранение..." : "Создать"}
       isOpen={props.isOpen}
       onClose={props.onClose}
     >

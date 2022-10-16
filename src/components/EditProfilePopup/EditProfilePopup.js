@@ -34,7 +34,7 @@ export default function EditProfilePopup(props) {
       onSubmit={handleSubmit}
       name="editProfile"
       title="Редактировать профиль"
-      btnText="Сохранить"
+      btnText={props.isLoading ? "Сохранение..." : "Сохранить"}
       isOpen={props.isOpen}
       onClose={props.onClose}
     >

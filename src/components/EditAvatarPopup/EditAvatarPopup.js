@@ -17,7 +17,7 @@ export default function EditAvatarPopup(props) {
       onSubmit={handleSubmit}
       name="editAvatar"
       title="Обновить аватар"
-      btnText="Сохранить"
+      btnText={props.isLoading ? "Сохранение..." : "Сохранить"}
       isOpen={props.isOpen}
       onClose={props.onClose}
     >
