@@ -8,7 +8,7 @@ import Footer from "./Footer/Footer.js";
 import Header from "./Header/Header.js";
 import ImagePopup from "./ImagePopup/ImagePopup.js";
 import Main from "./Main/Main.js";
-import React from "react";
+import React, { useEffect } from "react";
 
 export default function App() {
   const [currentUser, setCurrentUser] = React.useState({});
@@ -20,6 +20,7 @@ export default function App() {
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
   const [isDeleteCardPopupOpen, setIsDeleteCardPopupOpen] = React.useState(false);
   const [isImagePopupOpen, setIsImagePopupOpen] = React.useState(false);
+  const isOpen = isEditAvatarPopupOpen || isEditProfilePopupOpen || isAddPlacePopupOpen || isImagePopupOpen || isDeleteCardPopupOpen;
 
   React.useEffect(() => {
     Promise.all([api.getUserInfo(), api.getInitialCards()])
@@ -31,6 +32,20 @@ export default function App() {
         console.log(err);
       });
   }, []);
+
+  React.useEffect(() => {
+    function closeByEscape(evt) {
+      if(evt.key === "Escape") {
+        closeAllPopups();
+      }
+    }
+    if(isOpen) {
+      document.addEventListener('keyup', closeByEscape);
+      return () => {
+        document.removeEventListener('keyup', closeByEscape);
+      }
+    }
+  }, [isOpen]);
 
   function handleUpdateAvatar(newAvatar) {
     setIsLoading(true);
@@ -134,13 +149,6 @@ export default function App() {
     }
   }
 
-  // TODO: при нажатии Esc, попап с картинкой не закрывается
-  function handleEscClosePopup(evt) {
-    if(evt.key === "Escape") {
-      closeAllPopups();
-    }
-  }
-
   function closeAllPopups() {
     setIsEditAvatarPopupOpen(false);
     setIsEditProfilePopupOpen(false);
@@ -154,7 +162,6 @@ export default function App() {
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page" name="page"
         onClick={handleClickClosePopup}
-        onKeyUp={handleEscClosePopup}
       >
         <Header />
         <Main
