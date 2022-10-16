@@ -75,10 +75,15 @@ export default function App() {
     evt.preventDefault();
     api.deleteCard(selectedCard._id)
       .then(() => {
-        const newCardsArray = cards.filter((item) => {
-          return item._id !== selectedCard._id;
+        // const newCardsArray = cards.filter((item) => {
+        //   return item._id !== selectedCard._id;
+        // });
+        // setCards(newCardsArray);
+        setCards((state) => {
+          return state.filter((card) => {
+            return card._id !== selectedCard._id;
+          });
         });
-        setCards(newCardsArray);
         closeAllPopups();
       })
       .catch((err) => {
