@@ -12,7 +12,7 @@ export default function Main(props) {
           <img
             className="profile__avatar"
             alt="Аватар"
-            src={currentUser.userAvatar}
+            src={currentUser.avatar}
           />
           <button
             onClick={props.onEditAvatar}
@@ -22,7 +22,7 @@ export default function Main(props) {
           ></button>
         </div>
         <div className="profile__edit">
-          <h1 className="profile__title">{currentUser.userName}</h1>
+          <h1 className="profile__title">{currentUser.name}</h1>
           <button
             onClick={props.onEditProfile}
             className="profile__button-edit"
@@ -30,7 +30,7 @@ export default function Main(props) {
             aria-label="Кнопка редактирования профиля"
           ></button>
         </div>
-        <p className="profile__subtitle">{currentUser.userAbout}</p>
+        <p className="profile__subtitle">{currentUser.about}</p>
         <button
           onClick={props.onAddPlace}
           className="profile__button-add"

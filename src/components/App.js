@@ -11,12 +11,7 @@ import Main from "./Main/Main.js";
 import React from "react";
 
 export default function App() {
-  const [currentUser, setCurrentUser] = React.useState({
-    userName: "",
-    userAvatar: "",
-    userAbout: "",
-    _id: "",
-  });
+  const [currentUser, setCurrentUser] = React.useState({});
   const [cards, setCards] = React.useState([]);
   const [selectedCard, setSelectedCard] = React.useState({});
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
@@ -28,12 +23,7 @@ export default function App() {
   React.useEffect(() => {
     Promise.all([api.getUserInfo(), api.getInitialCards()])
       .then(([userData, cardList]) => {
-        setCurrentUser({
-          userName: userData.name,
-          userAvatar: userData.avatar,
-          userAbout: userData.about,
-          _id: userData._id,
-        });
+        setCurrentUser(userData);
         setCards(cardList);
       })
       .catch((err) => {
@@ -44,12 +34,7 @@ export default function App() {
   function handleUpdateAvatar(newAvatar) {
     api.editProfileAvatar(newAvatar.avatar)
       .then((userData) => {
-        setCurrentUser({
-          userName: userData.name,
-          userAvatar: userData.avatar,
-          userAbout: userData.about,
-          _id: userData._id,
-        });
+        setCurrentUser(userData);
         closeAllPopups();
       })
       .catch((err) => {
@@ -60,12 +45,7 @@ export default function App() {
   function handleUpdateUser(newUserData) {
     api.editProfile(newUserData)
       .then((userData) => {
-        setCurrentUser({
-          userName: userData.name,
-          userAvatar: userData.avatar,
-          userAbout: userData.about,
-          _id: userData._id,
-        });
+        setCurrentUser(userData);
         closeAllPopups();
       })
       .catch((err) => {
