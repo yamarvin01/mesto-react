@@ -39,10 +39,17 @@ export default function App() {
         closeAllPopups();
       }
     }
+    function closeByClick(evt) {
+      if(evt.target.classList.contains("popup")) {
+        closeAllPopups();
+      }
+    }
     if(isOpen) {
       document.addEventListener('keyup', closeByEscape);
+      document.addEventListener('mouseup', closeByClick);
       return () => {
         document.removeEventListener('keyup', closeByEscape);
+        document.removeEventListener('mouseup', closeByClick);
       }
     }
   }, [isOpen]);
@@ -143,12 +150,6 @@ export default function App() {
     setIsImagePopupOpen(true);
   }
 
-  function handleClickClosePopup(evt) {
-    if(evt.target.classList.contains("popup")) {
-      closeAllPopups();
-    }
-  }
-
   function closeAllPopups() {
     setIsEditAvatarPopupOpen(false);
     setIsEditProfilePopupOpen(false);
@@ -161,7 +162,6 @@ export default function App() {
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page" name="page"
-        onClick={handleClickClosePopup}
       >
         <Header />
         <Main
